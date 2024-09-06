@@ -4,8 +4,9 @@ import { Outlet } from "react-router-dom";
 const HomeLayout = () => {
   return (
     <>
-      HomeLayout
-      <Outlet />
+      <section className="align-element py-20">
+        <Outlet />
+      </section>
     </>
   );
 };
