@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
+import { IoPersonOutline } from "react-icons/io5";
+import Navlinks from "./Navlinks";
 
 const Navbar = () => {
   return (
@@ -27,18 +29,37 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
             >
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
+              <Navlinks />
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Solace</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal">Nav Links</ul>
+          <ul className="menu menu-horizontal">
+            <Navlinks />
+          </ul>
         </div>
         <div className="navbar-end mr-5">
-          <NavLink>
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="indicator mr-5">
+              <IoPersonOutline className="h-6 w-6" />
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between">Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
+          </div>
+          <NavLink to="/cart">
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />
               <span className="badge badge-sm badge-primary indicator-item">
