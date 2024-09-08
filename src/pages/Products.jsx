@@ -4,7 +4,7 @@ import SingleProduct from "./SingleProduct";
 const Products = () => {
   return (
     <div>
-      <SingleProduct />
+      <h1>Products</h1>
     </div>
   );
 };
