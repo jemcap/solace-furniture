@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <>
+    <section className="min-h-screen">
       <div className="flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center">
         <h1 className="text-4xl font-bold leading-none tracking-tight sm:text-6xl ">
           About Solace Furnitures
@@ -15,7 +15,7 @@ const About = () => {
         asperiores voluptas labore minus dolores reprehenderit corporis quos.
         Assumenda molestias harum dignissimos?
       </p>
-    </>
+    </section>
   );
 };
 

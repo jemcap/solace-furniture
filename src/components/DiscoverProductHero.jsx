@@ -16,14 +16,14 @@ const DiscoverProductHero = () => {
 
   return (
     <div
-      className="hero mt-20 justify-end"
+      className="hero rounded-xl mt-20 justify-end"
       style={{
         backgroundImage: `url(${image})`,
       }}
       role="banner"
       aria-label={`Discover ${company}`}
     >
-      <div className="hero-overlay bg-opacity-30"></div>
+      <div className="hero-overlay bg-opacity-30 rounded-xl"></div>
       <div className="hero-content text-neutral-content text-end">
         <div className="max-w-md">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-5">{`Discover ${company}`}</h1>
@@ -37,7 +37,9 @@ const DiscoverProductHero = () => {
             to={`/products/${id}`}
             className="btn btn-primary"
             aria-label={`View more details about ${company}`}
-          >{`View ${company}`}</Link>
+          >
+            View more
+          </Link>
         </div>
       </div>
     </div>
