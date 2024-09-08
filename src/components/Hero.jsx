@@ -22,8 +22,12 @@ const Hero = () => {
           </div>
         </div>
         <div className="hidden h-[28rem] lg:carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
-          {heroImages.map((image) => (
-            <img src={image} />
+          {heroImages.map((image, i) => (
+            <img
+              key={i}
+              src={image}
+              className="rounded-box h-full w-80 object-cover"
+            />
           ))}
         </div>
       </div>
