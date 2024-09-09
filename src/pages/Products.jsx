@@ -5,12 +5,16 @@ import { useLoaderData } from "react-router-dom";
 
 const url = "/products";
 
-export const loader = async () => {
-  const response = await fetchUrl(url);
+export const loader = async ({ request }) => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+  console.log(params);
+  const response = await fetchUrl(url, { params });
   const resData = response.data;
   console.log(resData);
   const { data, meta } = resData;
-  return { products: data, meta };
+  return { products: data, meta, params };
 };
 
 const Products = () => {

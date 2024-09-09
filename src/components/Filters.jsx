@@ -5,7 +5,8 @@ import FormRange from "./FormRange";
 import FormCheckbox from "./FormCheckbox";
 
 const Filters = () => {
-  const { meta } = useLoaderData();
+  const { meta, params } = useLoaderData();
+  const { category, company, order, price, search } = params;
   const categories = meta.categories;
   const companies = meta.companies;
   return (
@@ -20,28 +21,37 @@ const Filters = () => {
               type="search"
               label="search product"
               name="search"
+              defaultValue={search}
               size="input-sm"
             />
             <FormSelect
               label="category"
               name="category"
               list={categories}
+              defaultValue={category}
               size="select-sm"
             />
             <FormSelect
               label="company"
               name="company"
               list={companies}
+              defaultValue={company}
               size="select-sm"
             />
             <FormSelect
               label="sort by"
               name="order"
               list={["A-Z", "Z-A", "Price: High-Low", "Price: Low-High"]}
+              defaultValue={order}
               size="select-sm"
             />
 
-            <FormRange label="price" name="price" size="range-sm" />
+            <FormRange
+              label="price"
+              name="price"
+              size="range-sm"
+              defaultValue={price}
+            />
             <FormCheckbox
               label="shipping"
               name="shipping"
