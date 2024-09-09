@@ -2,7 +2,7 @@ import React from "react";
 
 const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
-    <div className="form-control mb-7">
+    <div className="form-control">
       <label className="label-text capitalize">{label}</label>
       <input
         type={type}
