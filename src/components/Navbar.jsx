@@ -1,11 +1,22 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import Navlinks from "./Navlinks";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../features/user/userSlice";
+import { clearCart } from "../features/cart/cartSlice";
 
 const Navbar = () => {
+  const { user } = useSelector((store) => store.user);
   const { numItemsInCart } = useSelector((store) => store.cart);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    navigate("/");
+    dispatch(logoutUser());
+    dispatch(clearCart());
+  };
 
   return (
     <div className="bg-base-200">
@@ -43,25 +54,38 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end mr-5">
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="indicator mr-5">
-              <IoPersonOutline className="h-6 w-6" />
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="indicator mr-5">
+                <IoPersonOutline className="h-6 w-6" />
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a className="justify-between">Account</a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>
+                    <a>Logout</a>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+          ) : (
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="indicator mr-5">
+                <NavLink to="/login">
+                  <IoPersonOutline className="h-6 w-6" />
+                </NavLink>
+              </div>
+            </div>
+          )}
+
           <NavLink to="/cart">
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />

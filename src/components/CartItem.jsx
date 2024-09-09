@@ -26,7 +26,7 @@ const CartItem = ({ cartItem }) => {
         className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover"
       />
 
-      <div className="sm:ml-16 sm:w-48">
+      <div className="sm:ml-12 sm:w-48">
         <h3 className="capitalize font-medium">{title}</h3>
 
         <h4 className="mt-2 capitalize text-sm text-neutral-content">
