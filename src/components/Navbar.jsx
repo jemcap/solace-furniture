@@ -2,8 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import Navlinks from "./Navlinks";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { numItemsInCart } = useSelector((store) => store.cart);
+
   return (
     <div className="bg-base-200">
       <div className="navbar align-element">
@@ -63,7 +66,7 @@ const Navbar = () => {
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />
               <span className="badge badge-sm badge-primary indicator-item">
-                3
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>

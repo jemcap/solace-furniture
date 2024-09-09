@@ -18,6 +18,17 @@ export const formatPrice = (price) => {
   return formatter;
 };
 
+export const generateAmountOptions = (number) => {
+  return Array.from({ length: number }, (_, i) => {
+    const amount = i + 1;
+    return (
+      <option key={amount} value={amount}>
+        {amount}
+      </option>
+    );
+  });
+};
+
 export const fetchUrl = axios.create({
   baseURL: "https://strapi-store-server.onrender.com/api",
 });

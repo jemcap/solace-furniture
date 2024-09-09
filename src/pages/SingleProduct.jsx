@@ -2,13 +2,18 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { formatPrice, fetchUrl } from "../utils/utils";
 import { Link } from "react-router-dom";
+import { addItem } from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
+// Loader
 export const loader = async ({ params }) => {
   const response = await fetchUrl(`/products/${params.id}`);
   return { product: response.data.data };
 };
 
+// Component
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const { product } = useLoaderData();
   const { image, title, price, description, colors, company } =
     product.attributes;
@@ -22,11 +27,25 @@ const SingleProduct = () => {
 
   const maxAmt = 10;
   const options = Array.from({ length: maxAmt }, (_, i) => {
-    const amount = i + 1;
-    return amount;
+    return i + 1;
   });
 
   console.log(options);
+
+  const cartProduct = {
+    cartId: product.id + productColor,
+    productId: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
+
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
 
   return (
     <section className="min-h-screen">
@@ -98,7 +117,9 @@ const SingleProduct = () => {
             </select>
           </div>
           <div className="mt-10">
-            <button className="btn btn-secondary btn-md">Add to bag</button>
+            <button className="btn btn-secondary btn-md" onClick={addToCart}>
+              Add to bag
+            </button>
           </div>
           <div
             tabIndex={0}

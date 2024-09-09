@@ -1,7 +1,6 @@
 import React from "react";
 import { Filters, PaginationContainer, ProductsContainer } from "../components";
 import { fetchUrl } from "../utils/utils";
-import { useLoaderData } from "react-router-dom";
 
 const url = "/products";
 
