@@ -12,7 +12,7 @@ export const loader = async () => {
 
   const allProductsRes = await fetchUrl(allProductsUrl);
   const allProducts = allProductsRes.data.data;
-  return { featuredProducts, allProducts };
+  return { products: featuredProducts, allProducts };
 };
 
 const Landing = () => {
