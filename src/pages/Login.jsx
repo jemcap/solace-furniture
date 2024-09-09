@@ -49,6 +49,13 @@ const Login = () => {
           <div className="mt-10">
             <SubmitButton text="Login" />
           </div>
+          <button
+            type="button"
+            className="btn btn-secondary btn-block mt-2 capitalize"
+            aria-label="Sign in as guest user"
+          >
+            guest user
+          </button>
           <p className="text-center mt-5">
             Not a member yet?
             <Link
