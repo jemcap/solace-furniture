@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 
 const DiscoverProductHero = () => {
   const { allProducts } = useLoaderData();
@@ -33,8 +33,9 @@ const DiscoverProductHero = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
+
           <Link
-            to={`/products/${id}`}
+            to={`/products?company=${encodeURIComponent(company)}`}
             className="btn btn-primary"
             aria-label={`View more details about ${company}`}
           >
