@@ -30,7 +30,7 @@ const SingleProduct = () => {
     product.attributes;
   console.log(product);
   const [productColor, setProductColor] = useState(colors[0]);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
 
   const handleChange = (e) => {
     setAmount(parseInt(e.target.value));

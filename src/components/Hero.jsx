@@ -6,27 +6,38 @@ const Hero = () => {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-        <div>
-          <h1 className="max-w-2xl text-4xl font-bold tacking-tight sm:text-6xl">
+        <div className="space-y-6">
+          <h1 className="max-w-2xl text-4xl font-bold tracking-tight leading-tight sm:text-6xl">
             Feel at Solace
           </h1>
-          <p className="mt-8 max-w-xl text-lg leading-8">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            odio delectus aliquid repellendus deleniti perferendis laborum
-            ratione iste officia harum?
+          <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600">
+            Welcome to Solace Furnitures, where comfort meets elegance. Our
+            mission is to transform your living space into a sanctuary of style
+            and serenity, with meticulously crafted furniture pieces that are as
+            unique as you are.
           </p>
-          <div className="mt-10">
-            <Link to="/products" className="btn btn-primary">
-              Our Products
+          <p className="max-w-xl text-lg leading-8 text-gray-600">
+            Discover our collection of premium furniture that seamlessly
+            combines modern design with timeless craftsmanship. Let us help you
+            create a space that speaks to your soul.
+          </p>
+          <div className="mt-8">
+            <Link
+              to="/products"
+              className="btn btn-primary text-md font-medium rounded-md"
+            >
+              Explore Our Products
             </Link>
           </div>
         </div>
-        <div className="hidden h-[28rem] lg:carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
+        <div className="hidden lg:block columns-2 md:columns-3 gap-4 space-y-4">
           {heroImages.map((image, i) => (
             <img
               key={i}
               src={image}
-              className="rounded-box h-full w-80 object-cover"
+              alt={`Gallery Image ${i + 1}`}
+              className="w-full mb-4 rounded-lg break-inside-avoid"
+              aria-label="images of furnitures"
             />
           ))}
         </div>
