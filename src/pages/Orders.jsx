@@ -55,11 +55,11 @@ const Orders = () => {
     return <SectionTitle text="Please make an order" />;
   }
   return (
-    <>
+    <div className="min-h-screen">
       <SectionTitle text="Your orders" />
       <OrdersList />
       <OrdersPagination />
-    </>
+    </div>
   );
 };
 
