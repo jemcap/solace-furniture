@@ -4,7 +4,10 @@ const Footer = () => {
   return (
     <footer className="footer footer-center bg-base-200 text-base-content rounded p-10">
       <nav className="grid grid-flow-col gap-4">
-        <a href="" className="link link-hover">
+        <a
+          href="https://github.com/jemcap/solace-furniture"
+          className="link link-hover"
+        >
           Github Repo
         </a>
 
