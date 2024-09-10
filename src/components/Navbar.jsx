@@ -46,7 +46,9 @@ const Navbar = () => {
               <Navlinks />
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Solace</a>
+          <Link to="/">
+            <a className="text-xl">Solace Furnitures</a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal">

@@ -77,18 +77,8 @@ const Login = () => {
           <h4 className="text-center text-3xl font-bold capitalize mb-5">
             login
           </h4>
-          <FormInput
-            type="email"
-            label="email"
-            name="identifier"
-            defaultValue="test@test.com"
-          />
-          <FormInput
-            type="password"
-            label="password"
-            name="password"
-            defaultValue="secret"
-          />
+          <FormInput type="email" label="email" name="identifier" />
+          <FormInput type="password" label="password" name="password" />
           <div className="mt-10">
             <SubmitButton text="Login" />
           </div>
