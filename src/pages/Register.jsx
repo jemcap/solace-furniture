@@ -2,6 +2,26 @@ import React from "react";
 import { FormInput, SubmitButton } from "../components";
 import { Form, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { fetchUrl } from "../utils/utils";
+import { toast } from "react-toastify";
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+  try {
+    const response = await fetchUrl.post("/auth/local/register", data);
+    toast.success("Account created successfully");
+    return redirect("/login");
+  } catch (error) {
+    console.log(error.response.data.error.message);
+    const errorMessage =
+      error?.response?.data?.error?.message || "There was an error";
+    toast.warning(errorMessage);
+    return null;
+  }
+};
 
 const Register = () => {
   const navigate = useNavigate();

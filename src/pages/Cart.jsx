@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  let user = null;
+  let user = JSON.parse(localStorage.getItem("user")) ?? null;
   const { numItemsInCart } = useSelector((store) => store.cart);
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty." />;

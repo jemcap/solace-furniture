@@ -1,14 +1,57 @@
-import React from "react";
 import { FormInput, SubmitButton } from "../components";
-import { Form, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
+import { fetchUrl } from "../utils/utils";
+import { toast } from "react-toastify";
+import { loginUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
 
+export const action =
+  (store) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    try {
+      const response = await fetchUrl.post("/auth/local", data);
+      console.log(response.data);
+      store.dispatch(loginUser(response.data));
+      toast.success("User logged in successfully");
+      return redirect("/");
+    } catch (error) {
+      console.log(error.response.data.error.message);
+      const errorMessage =
+        error?.response?.data?.error?.message || "Check your credentials";
+      toast.warning(errorMessage);
+      return null;
+    }
+  };
+
+// Component
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDirectToHome = () => {
     navigate("/");
   };
+
+  const loginAsGuestUser = async () => {
+    try {
+      const response = await fetchUrl.post("/auth/local", {
+        identifier: "test@test.com",
+        password: "secret",
+      });
+      dispatch(loginUser(response.data));
+      toast.success("Logged in as Guest User");
+      return navigate("/");
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        "Guest user login error. Please try again later.";
+      toast.error(errorMessage);
+      return null;
+    }
+  };
+
   return (
     <section className="h-screen grid place-items-center">
       <div className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
@@ -52,6 +95,7 @@ const Login = () => {
           <button
             type="button"
             className="btn btn-secondary btn-block mt-2 capitalize"
+            onClick={() => loginAsGuestUser()}
             aria-label="Sign in as guest user"
           >
             guest user
