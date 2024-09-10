@@ -17,8 +17,6 @@ Solace Furnitures is a modern ecommerce platform designed to provide a seamless 
 - **Real-Time Data Handling**: Use of React Query to manage API calls for products and inventory.
 - **Dynamic Product Display**: Filterable and searchable product listings to help users find exactly what they need.
 
-## **Demo**
-
 ### Key Technologies
 
 - **React**: For building a dynamic and interactive user interface.
