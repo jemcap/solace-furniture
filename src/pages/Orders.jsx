@@ -2,9 +2,27 @@ import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchUrl } from "../utils/utils";
 import { OrdersList, OrdersPagination, SectionTitle } from "../components";
+import { QueryClient } from "@tanstack/react-query";
+
+const ordersQuery = (params, user) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      fetchUrl("/orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
 
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const { user } = store.getState().user;
 
@@ -16,12 +34,9 @@ export const loader =
       ...new URL(request.url).searchParams.entries(),
     ]);
     try {
-      const response = await fetchUrl("/orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(params, user)
+      );
       console.log(response.data.data);
       return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {

@@ -6,11 +6,21 @@ import { DiscoverProductHero, FeaturedProducts } from "../components";
 const url = "/products?featured=true";
 const allProductsUrl = "/products";
 
-export const loader = async () => {
-  const response = await fetchUrl(url);
+const featuredProductsQuery = {
+  queryKey: ["featuredProducts"],
+  queryFn: () => fetchUrl(url),
+};
+
+const productsHeroQuery = {
+  queryKey: ["productsHero"],
+  queryFn: () => fetchUrl(allProductsUrl),
+};
+
+export const loader = (queryClient) => async () => {
+  const response = await queryClient.ensureQueryData(featuredProductsQuery);
   const featuredProducts = response.data.data;
 
-  const allProductsRes = await fetchUrl(allProductsUrl);
+  const allProductsRes = await queryClient.ensureQueryData(productsHeroQuery);
   const allProducts = allProductsRes.data.data;
   return { products: featuredProducts, allProducts };
 };

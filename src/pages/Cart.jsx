@@ -1,20 +1,19 @@
 import { useSelector } from "react-redux";
-import {
-  CartItem,
-  CartItemsList,
-  CartTotals,
-  SectionTitle,
-} from "../components";
+import { CartItemsList, CartTotals, SectionTitle } from "../components";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   let user = JSON.parse(localStorage.getItem("user")) ?? null;
   const { numItemsInCart } = useSelector((store) => store.cart);
   if (numItemsInCart === 0) {
-    return <SectionTitle text="Your cart is empty." />;
+    return (
+      <div className="min-h-screen">
+        <SectionTitle text="Your cart is empty." />
+      </div>
+    );
   }
   return (
-    <>
+    <div className="min-h-screen">
       <SectionTitle text="Shopping Cart" />
       <div className="mt-8 grid gap-8  lg:grid-cols-12">
         <div className="lg:col-span-8">
@@ -39,7 +38,7 @@ const Cart = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

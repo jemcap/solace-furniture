@@ -5,11 +5,22 @@ import { Link } from "react-router-dom";
 import { addItem } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 
-// Loader
-export const loader = async ({ params }) => {
-  const response = await fetchUrl(`/products/${params.id}`);
-  return { product: response.data.data };
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => fetchUrl(`/products/${id}`),
+  };
 };
+
+// Loader
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    return { product: response.data.data };
+  };
 
 // Component
 const SingleProduct = () => {
