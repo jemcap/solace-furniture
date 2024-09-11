@@ -53,8 +53,8 @@ Contributions are welcome! If you have any ideas for new features, improvements,
 
 ## Credits
 
-Author: https://github.com/john-smilga
-API Server: https://github.com/john-smilga/strapi-comfy-store-api-server
+- **Author**: https://github.com/john-smilga
+- **API Server**: https://github.com/john-smilga/strapi-comfy-store-api-server
 
 #### How to Contribute
 
