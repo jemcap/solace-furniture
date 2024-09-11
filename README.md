@@ -51,6 +51,11 @@ To install and set up Speed-Typer locally, follow these steps:
 
 Contributions are welcome! If you have any ideas for new features, improvements, or bug fixes, please submit a pull request or open an issue on GitHub.
 
+## Credits
+
+Author: https://github.com/john-smilga
+API Server: https://github.com/john-smilga/strapi-comfy-store-api-server
+
 #### How to Contribute
 
 1. Fork the repository.
